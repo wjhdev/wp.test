@@ -33,10 +33,16 @@ class wordpress::install {
 
   exec { 'mv-wordpress':
     cwd     => '/vagrant/wp.test',
-    command => 'mv wordpress wp',
+    command => 'mv wordpress/* wp/',
     require => Exec['untar-wordpress'],
   }
 
+  exec { 'rm-wordpress':
+    cwd     => '/vagrant/wp.test',
+    command => 'rm -rf wordpress; rm latest.tar.gz',
+    require => Exec['mv-wordpress'],
+  }
+  
   # Copy wp-config.php file for the vagrant setup
   file { '/vagrant/wp.test/wp/wp-config.php':
     source => 'puppet:///modules/wordpress/wp-config.php'
