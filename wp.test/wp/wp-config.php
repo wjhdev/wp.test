@@ -34,6 +34,8 @@ define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
 
 /* url definitions */
+define('WP_HOME', '/');
+define('WP_SITEURL', '/wp/');
 
 /**#@+
  * Authentication Unique Keys and Salts.
